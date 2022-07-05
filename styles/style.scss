@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap");
+
+$bg-dark: hsl(0, 0%, 20%);
+$bg-darker: hsl(0, 0%, 7%);
+$font-color: hsl(0, 0%, 100%);
+
+@mixin init-flex($orientation, $justify: center, $align: center) {
+  display: flex;
+  flex-flow: $orientation;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+:root {
+  font-size: 16;
+  color: $font-color;
+}
+
+*::before,
+*,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  @include init-flex(column, flex-start, center);
+  min-height: 100vh;
+  gap: 1rem;
+  background-color: $bg-darker;
+
+  header {
+    @include init-flex(row, space-between, flex-start);
+    padding: 1rem 0.5rem;
+    width: 100%;
+    background-color: $bg-dark;
+  }
+
+  main.card-container {
+    @include init-flex(column, flex-start, flex-start);
+    width: Min(90vw);
+    padding: 1rem;
+    background-color: $bg-dark;
+
+    &:first-child {
+      border-bottom: 2px solid $bg-dark;
+    }
+
+    .card {
+      display: grid;
+      width: 100%;
+    }
+  }
+}
+
+.create {
+  position: fixed;
+  margin: 1rem;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: $bg-dark;
+}
+
+img {
+  height: 150px;
+  width: 100px;
+}
+
+input {
+  background-color: $bg-darker;
+  color: $font-color;
+}
