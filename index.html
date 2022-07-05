@@ -14,7 +14,31 @@
   </head>
   <body>
     <h1>Library</h1>
-    <input type="text" name="search" id="search" />
-    <div class="create"></div>
+    <div class="searchbar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" name="search" id="search" />
+    </div>
+    <main class="card-container">
+      <div class="card">
+        <div class="hero">
+          <img src="images/fallback-bookcover.jpg" alt="book-cover" />
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <div class="information">
+          <p class="title book-info"></p>
+          <p class="author book-info"></p>
+          <p class="pages book-info"></p>
+          <label for="finished"
+            >Finished?
+            <input type="checkbox" name="finished" id="finished" />
+          </label>
+        </div>
+      </div>
+    </main>
+    <div class="create"><i class="fa-regular fa-plus"></i></div>
   </body>
 </html>
