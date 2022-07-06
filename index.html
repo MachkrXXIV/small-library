@@ -48,17 +48,32 @@
       </div>
     </main>
     <form action="/" class="popup">
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="title" />
-      <label for="author">Author:</label>
-      <input type="text" name="author" id="author" />
-      <label for="pages">Pages:</label>
-      <input type="number" name="pages" id="pages" />
-      <label for="read">Finished?:</label>
-      <input type="text" name="read" id="read" />
-      <label for="rating">Rating:</label>
-      <input type="text" name="rating" id="rating" />
+      <div class="popup-container">
+        <div class="title-container">
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="title" required />
+        </div>
+        <div class="author-container">
+          <label for="author">Author:</label>
+          <input type="text" name="author" id="author" required />
+        </div>
+        <div class="pages-container">
+          <label for="pages">Pages:</label>
+          <input type="number" name="pages" id="pages" required />
+        </div>
+        <div class="read-container">
+          <label for="read">Finished?:</label>
+          <input type="checkbox" name="read" id="read" />
+        </div>
+        <div class="rating-container">
+          <label for="rating">Rating:</label>
+          <input type="number" name="rating" id="rating" />
+        </div>
+        <button type="submit">Submit</button>
+      </div>
     </form>
-    <div class="create" href="#"><i class="fa-regular fa-plus fa-2xl"></i></div>
+    <button class="create" href="#">
+      <i class="fa-regular fa-plus fa-2xl"></i>
+    </button>
   </body>
 </html>

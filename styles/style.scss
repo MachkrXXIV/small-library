@@ -4,6 +4,13 @@ $bg-dark: hsl(0, 0%, 20%);
 $bg-darker: hsl(0, 0%, 7%);
 $font-color: hsl(0, 0%, 100%);
 
+@mixin center-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @mixin init-flex($orientation, $justify: center, $align: center) {
   display: flex;
   flex-flow: $orientation;
@@ -97,15 +104,48 @@ input {
   cursor: pointer;
 }
 
-.popup {
+.popup-container {
   @include init-flex(column, flex-start, flex-start);
-  position: fixed;
+  @include center-fixed;
+  padding: 1rem;
+  gap: 2rem;
+  border: 2px solid teal;
+  border-radius: 0.8rem;
+  background-color: $bg-dark;
+  font-size: 1.8rem;
+
+  label {
+    display: block;
+  }
+
+  input {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+  }
+
+  button {
+    align-self: center;
+    padding: 0 1rem;
+    border-radius: 0.8rem;
+    font-size: 2rem;
+  }
 }
 
-.rating {
+.stars {
   margin-left: -0.1rem;
 }
 
 .show {
   visibility: hidden;
+}
+
+#read {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#pages,
+#rating {
+  width: 5rem;
 }
