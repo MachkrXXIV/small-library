@@ -24,7 +24,7 @@
       <div class="card">
         <div class="hero">
           <img src="images/fallback-bookcover.jpg" alt="book-cover" />
-          <div class="rating">
+          <div class="stars">
             <i class="fa-regular fa-star"></i>
             <i class="fa-regular fa-star"></i>
             <i class="fa-regular fa-star"></i>
@@ -47,6 +47,18 @@
         </div>
       </div>
     </main>
-    <div class="create"><i class="fa-regular fa-plus fa-2xl"></i></div>
+    <form action="/" class="popup">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" />
+      <label for="author">Author:</label>
+      <input type="text" name="author" id="author" />
+      <label for="pages">Pages:</label>
+      <input type="number" name="pages" id="pages" />
+      <label for="read">Finished?:</label>
+      <input type="text" name="read" id="read" />
+      <label for="rating">Rating:</label>
+      <input type="text" name="rating" id="rating" />
+    </form>
+    <div class="create" href="#"><i class="fa-regular fa-plus fa-2xl"></i></div>
   </body>
 </html>

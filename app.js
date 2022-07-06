@@ -1,4 +1,12 @@
-let myLibrary = [];
+const cardContainer = document.querySelector("main");
+
+let myLibrary = [
+  {
+    title: "When Panic Attacks",
+    author: "David D. Burns",
+    pages: 464,
+  },
+];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -7,12 +15,17 @@ function Book(title, author, pages, read) {
   this.read = Boolean(read);
 }
 
-function addBookToLibrary(book) {
+function addBookToLibrary() {
+  const newBook = Book();
   myLibrary.push(book);
 }
 
 function displayBooks() {
   for (book of myLibrary) {
-    return;
+    cardContainer.appendChild(book);
   }
+}
+
+function newBook() {
+  return;
 }

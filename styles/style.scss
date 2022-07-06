@@ -43,14 +43,16 @@ body {
     padding: 1rem;
     background-color: $bg-dark;
 
-    &:first-child {
-      border-bottom: 2px solid $bg-dark;
+    &:last-child {
+      border: none;
     }
 
     .card {
       display: grid;
       grid-template: 1fr / 1fr 2fr;
       width: 100%;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid $font-color;
 
       .hero {
         grid-row: auto;
@@ -63,6 +65,8 @@ body {
       }
 
       .actions {
+        @include init-flex(row, flex-start, flex-start);
+        gap: 1rem;
         grid-column: 2;
         justify-self: flex-end;
       }
@@ -89,8 +93,19 @@ input {
   padding: 1rem;
   border-radius: 50%;
   background-color: $bg-dark;
+  color: inherit;
+  cursor: pointer;
+}
+
+.popup {
+  @include init-flex(column, flex-start, flex-start);
+  position: fixed;
 }
 
 .rating {
   margin-left: -0.1rem;
+}
+
+.show {
+  visibility: hidden;
 }
