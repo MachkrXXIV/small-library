@@ -2,6 +2,7 @@ const cardContainer = document.querySelector("main");
 const create = document.querySelector(".create");
 const form = document.querySelector(".popup-container");
 const overlay = document.querySelector(".overlay");
+const submit = document.querySelector(".submit");
 
 create.addEventListener("click", toggleForm);
 
@@ -22,6 +23,7 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
+  let bookElement = document.createElement("div").classList.add("card");
   const newBook = new Book();
   myLibrary.push(book);
 }
@@ -41,4 +43,4 @@ function toggleForm() {
   form.classList.toggle("hidden");
 }
 
-console.log(form);
+console.log(myLibrary[0].author);
