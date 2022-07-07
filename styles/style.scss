@@ -3,6 +3,7 @@
 $bg-dark: hsl(0, 0%, 20%);
 $bg-darker: hsl(0, 0%, 7%);
 $font-color: hsl(0, 0%, 100%);
+$overlay-color: hsla(0, 0%, 20%, 0.4);
 
 @mixin center-fixed {
   position: fixed;
@@ -30,6 +31,8 @@ $font-color: hsl(0, 0%, 100%);
 *::after {
   box-sizing: border-box;
 }
+
+// LAYOUT//////////////////////////////
 
 body {
   @include init-flex(column, flex-start, center);
@@ -81,6 +84,8 @@ body {
   }
 }
 
+// COMPONENTS//////////////////////////////
+
 img {
   height: 150px;
   width: 100px;
@@ -104,6 +109,18 @@ input {
   cursor: pointer;
 }
 
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $overlay-color;
+  z-index: -1;
+}
+
 .popup-container {
   @include init-flex(column, flex-start, flex-start);
   @include center-fixed;
@@ -112,10 +129,13 @@ input {
   border: 2px solid teal;
   border-radius: 0.8rem;
   background-color: $bg-dark;
-  font-size: 1.8rem;
+  z-index: 1;
 
   label {
     display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
   }
 
   input {
@@ -132,12 +152,12 @@ input {
   }
 }
 
-.stars {
-  margin-left: -0.1rem;
+.hidden {
+  display: none;
 }
 
-.show {
-  visibility: hidden;
+.stars {
+  margin-left: -0.1rem;
 }
 
 #read {

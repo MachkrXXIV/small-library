@@ -1,5 +1,11 @@
 const cardContainer = document.querySelector("main");
+const create = document.querySelector(".create");
+const form = document.querySelector(".popup-container");
+const overlay = document.querySelector(".overlay");
 
+create.addEventListener("click", toggleForm);
+
+// do form queries to add to library
 let myLibrary = [
   {
     title: "When Panic Attacks",
@@ -16,7 +22,7 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  const newBook = Book();
+  const newBook = new Book();
   myLibrary.push(book);
 }
 
@@ -29,3 +35,10 @@ function displayBooks() {
 function newBook() {
   return;
 }
+
+function toggleForm() {
+  overlay.classList.toggle("hidden");
+  form.classList.toggle("hidden");
+}
+
+console.log(form);
