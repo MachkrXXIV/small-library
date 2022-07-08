@@ -87,6 +87,10 @@ body {
 
 // COMPONENTS//////////////////////////////
 
+i {
+  cursor: pointer;
+}
+
 img {
   height: 150px;
   width: 100px;
@@ -96,6 +100,10 @@ img {
 input {
   background-color: $bg-darker;
   color: $font-color;
+}
+
+.author {
+  font-size: 1.5rem;
 }
 
 .create {
@@ -155,6 +163,10 @@ input {
 
 .hidden {
   display: none;
+}
+
+.title {
+  font-size: 2rem;
 }
 
 .stars {
