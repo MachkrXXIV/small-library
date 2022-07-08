@@ -34,38 +34,46 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary() {
   let bookElement = document.createElement("div");
+  let bookIndex = myLibrary.length - 1;
   bookElement.classList.add("card");
+  bookElement.setAttribute(["data-index"], bookIndex);
   // const hero = document.createElement();
   const title = document.getElementById("title").value;
   const titleNode = document.createElement("h2");
   titleNode.classList.add("title");
+  titleNode.textContent = title;
 
   const author = document.getElementById("author").value;
   const authorNode = document.createElement("h3");
   authorNode.classList.add("author");
+  authorNode.textContent = author;
 
   const pages = document.getElementById("pages").value;
   const pagesNode = document.createElement("h3");
   pagesNode.classList.add("pages");
+  pagesNode.textContent = pages;
 
-  const finished = document.getElementById("read").checked;
-  const finishedNode = document.createElement("h3");
-  finishedNode.classList.add("read");
+  const read = document.getElementById("read").checked;
+  const readNode = document.createElement("h3");
+  readNode.classList.add("read");
+  readNode.textContent = read;
 
   const informationNode = document.createElement("div");
   informationNode.classList.add("information");
-  const nodes = [titleNode, authorNode, pagesNode, finishedNode];
-  const book = new Book(title, author, pages, finished);
 
-  console.log(finished.check);
+  const nodes = [titleNode, authorNode, pagesNode, readNode];
+  const book = new Book(title, author, pages, read);
+
   bookShelf.appendChild(bookElement);
   bookElement.appendChild(informationNode);
-  informationNode.appendChild(titleNode);
-  informationNode.appendChild(authorNode);
-  informationNode.appendChild(pagesNode);
-  informationNode.appendChild(finishedNode);
+  appendInfo(informationNode, nodes);
   myLibrary.push(book);
-  console.log(title);
+}
+
+function appendInfo(infoNode, nodeList) {
+  for (let i = 0; i < nodeList.length; i++) {
+    infoNode.appendChild(nodeList[i]);
+  }
 }
 
 function displayBooks() {
