@@ -37,7 +37,19 @@ function addBookToLibrary() {
   let bookIndex = myLibrary.length - 1;
   bookElement.classList.add("card");
   bookElement.setAttribute(["data-index"], bookIndex);
-  // const hero = document.createElement();
+
+  const heroNode = document.createElement("div");
+  const bookCover = document.createElement("img");
+  const starsNode = document.createElement("div");
+  heroNode.classList.add("hero");
+  bookCover.setAttribute("src", "images/fallback-bookcover.jpg");
+  starsNode.classList.add("stars");
+  for (let i = 0; i < 5; i++) {
+    let star = document.createElement("i");
+    star.classList.add("fa-regular", "fa-star");
+    starsNode.appendChild(star);
+  }
+
   const title = document.getElementById("title").value;
   const titleNode = document.createElement("h2");
   titleNode.classList.add("title");
@@ -56,21 +68,40 @@ function addBookToLibrary() {
   const read = document.getElementById("read").checked;
   const readNode = document.createElement("h3");
   readNode.classList.add("read");
-  readNode.textContent = read;
+  readNode.textContent = read ? "Status: Done" : "Status: Currently reading";
 
   const informationNode = document.createElement("div");
   informationNode.classList.add("information");
 
-  const nodes = [titleNode, authorNode, pagesNode, readNode];
+  const actionNode = document.createElement("div");
+  const editIcon = document.createElement("i");
+  const deleteIcon = document.createElement("i");
+  const icons = [editIcon, deleteIcon];
+  actionNode.classList.add("actions");
+  icons.forEach((icon) => {
+    actionNode.appendChild(icon);
+    icon.classList.add("fa-solid");
+    if (icon === deleteIcon) {
+      icon.classList.add("fa-trash-can");
+    } else {
+      icon.classList.add("fa-pen");
+    }
+  });
+
+  const graphicNodes = [bookCover, starsNode];
+  const inputNodes = [titleNode, authorNode, pagesNode, readNode];
   const book = new Book(title, author, pages, read);
 
   bookShelf.appendChild(bookElement);
+  bookElement.appendChild(heroNode);
   bookElement.appendChild(informationNode);
-  appendInfo(informationNode, nodes);
+  bookElement.appendChild(actionNode);
+  appendToNode(heroNode, graphicNodes);
+  appendToNode(informationNode, inputNodes);
   myLibrary.push(book);
 }
 
-function appendInfo(infoNode, nodeList) {
+function appendToNode(infoNode, nodeList) {
   for (let i = 0; i < nodeList.length; i++) {
     infoNode.appendChild(nodeList[i]);
   }
