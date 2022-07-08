@@ -1,13 +1,16 @@
 const bookShelf = document.querySelector("main");
 const create = document.querySelector(".create");
-const form = document.querySelector(".popup-container");
+const form = document.querySelector("form");
+const formContainer = document.querySelector(".popup-container");
 const overlay = document.querySelector(".overlay");
 const submit = document.querySelector(".submit");
 
 create.addEventListener("click", toggleForm);
-submit.addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  addBookToLibrary;
+  addBookToLibrary();
+  toggleForm();
+  console.log("am submitting!");
 });
 
 // do form queries to add to library
@@ -26,35 +29,43 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = Boolean(read);
+  this.read = read;
 }
 
 function addBookToLibrary() {
-  let bookElement = document.createElement("div").classList.add("card");
+  let bookElement = document.createElement("div");
+  bookElement.classList.add("card");
+  // const hero = document.createElement();
   const title = document.getElementById("title").value;
-  const titleNode = document.createElement("p").classList.add("title");
+  const titleNode = document.createElement("h2");
+  titleNode.classList.add("title");
+
   const author = document.getElementById("author").value;
-  const authorNode = document.createElement("p").classList.add("author");
+  const authorNode = document.createElement("h3");
+  authorNode.classList.add("author");
+
   const pages = document.getElementById("pages").value;
-  const pagesNode = document.createElement("p").classList.add("pages");
-  const finished = document.getElementById("finished").checked;
-  const finishedNode = document.createElement("p").classList.add("title");
-  const informationNode = document
-    .createElement("div")
-    .classList.add("information");
+  const pagesNode = document.createElement("h3");
+  pagesNode.classList.add("pages");
+
+  const finished = document.getElementById("read").checked;
+  const finishedNode = document.createElement("h3");
+  finishedNode.classList.add("read");
+
+  const informationNode = document.createElement("div");
+  informationNode.classList.add("information");
   const nodes = [titleNode, authorNode, pagesNode, finishedNode];
   const book = new Book(title, author, pages, finished);
-  appendToElement(informationNode, nodes);
-  bookElement.appendChild(informationNode);
+
+  console.log(finished.check);
   bookShelf.appendChild(bookElement);
+  bookElement.appendChild(informationNode);
+  informationNode.appendChild(titleNode);
+  informationNode.appendChild(authorNode);
+  informationNode.appendChild(pagesNode);
+  informationNode.appendChild(finishedNode);
   myLibrary.push(book);
   console.log(title);
-}
-
-function appendToElement(infoNode, nodesList) {
-  nodesList.forEach((e) => {
-    infoNode.appendChild(e);
-  });
 }
 
 function displayBooks() {
@@ -68,9 +79,8 @@ function newBook() {
 }
 
 function toggleForm() {
+  form.reset();
   overlay.classList.toggle("hidden");
-  form.classList.toggle("hidden");
+  formContainer.classList.toggle("hidden");
+  console.log(form);
 }
-
-let checkbox = document.querySelector("#read");
-console.log(checkbox.checked);
