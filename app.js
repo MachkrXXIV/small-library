@@ -2,7 +2,6 @@ const bookShelf = document.querySelector("main");
 const create = document.querySelector(".create");
 const form = document.querySelector("form");
 const formContainer = document.querySelector(".popup-container");
-
 const overlay = document.querySelector(".overlay");
 const submit = document.querySelector(".submit");
 
@@ -15,8 +14,6 @@ form.addEventListener("submit", (e) => {
   const formRead = document.getElementById("read").checked;
   addBookToLibrary(formTitle, formAuthor, formPages, formRead);
   toggleForm();
-  console.log(formTitle);
-  console.log("am submitting!");
 });
 
 // do form queries to add to library
@@ -70,19 +67,19 @@ function displayBooks() {
 
     const titleNode = document.createElement("h2");
     titleNode.classList.add("title");
-    titleNode.textContent = myLibrary[i].title;
+    titleNode.textContent = book.title;
 
     const authorNode = document.createElement("h3");
     authorNode.classList.add("author");
-    authorNode.textContent = `by ${myLibrary[i].author}`;
+    authorNode.textContent = `by ${book.author}`;
 
     const pagesNode = document.createElement("h3");
     pagesNode.classList.add("pages");
-    pagesNode.textContent = myLibrary[i].pages;
+    pagesNode.textContent = book.pages;
 
     const readNode = document.createElement("h3");
     readNode.classList.add("read");
-    readNode.textContent = myLibrary[i].read
+    readNode.textContent = book.read
       ? "Status: Done"
       : "Status: Currently reading";
 
@@ -116,15 +113,28 @@ function displayBooks() {
   }
 }
 
-function newBook() {
-  return;
+function iconListeners(event) {
+  const trashIcon = document.querySelector(".fa-trash-can");
+  const editIcon = document.querySelector(".fa-pen");
+
+  trashIcon.addEventListener("click", removeBook);
+}
+
+function removeBook(element) {
+  if (element.target.className === "fa-solid fa-trash-can") {
+    const index = element.target.closest(".card").getAttribute("data-index");
+    myLibrary.splice(index, 1);
+  }
+  displayBooks();
 }
 
 function toggleForm() {
   form.reset();
   overlay.classList.toggle("hidden");
+  form.classList.toggle("hidden");
   formContainer.classList.toggle("hidden");
   console.log(form);
 }
 
 displayBooks();
+iconListeners();
