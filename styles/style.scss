@@ -169,14 +169,18 @@ input {
   display: none;
 }
 
-.title {
-  font-size: 1.5rem;
-}
-
 .stars {
   display: flex;
   gap: 0.25rem;
   margin-left: -0.1rem;
+}
+
+.stat {
+  margin-left: 0.3rem;
+}
+
+.title {
+  font-size: 1.5rem;
 }
 
 #read {

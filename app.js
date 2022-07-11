@@ -22,6 +22,7 @@ let myLibrary = [
     title: "When Panic Attacks",
     author: "David D. Burns",
     pages: 464,
+    read: true,
   },
 ];
 
@@ -42,6 +43,18 @@ function appendToNode(infoNode, nodeList) {
   for (let i = 0; i < nodeList.length; i++) {
     infoNode.appendChild(nodeList[i]);
   }
+}
+
+function changeReadStatus(element) {
+  if (element.target.classList.contains("stat")) {
+    const index = element.target.closest(".card").getAttribute("data-index");
+    if (myLibrary[index].read === true) {
+      myLibrary[index].read = false;
+    } else {
+      myLibrary[index].read = true;
+    }
+  }
+  displayBooks();
 }
 
 function displayBooks() {
@@ -78,10 +91,15 @@ function displayBooks() {
     pagesNode.textContent = book.pages;
 
     const readNode = document.createElement("h3");
+    const changeStatIcon = document.createElement("i");
     readNode.classList.add("read");
     readNode.textContent = book.read
       ? "Status: Done"
       : "Status: Currently reading";
+    changeStatIcon.className = book.read
+      ? "stat fa-solid fa-square-check"
+      : "stat fa-solid fa-book-open-reader";
+    readNode.appendChild(changeStatIcon);
 
     const informationNode = document.createElement("div");
     informationNode.classList.add("information");
@@ -110,14 +128,17 @@ function displayBooks() {
     bookElement.appendChild(actionNode);
     appendToNode(heroNode, graphicNodes);
     appendToNode(informationNode, inputNodes);
+    iconListeners();
   }
 }
 
-function iconListeners(event) {
+function iconListeners() {
   const trashIcon = document.querySelector(".fa-trash-can");
   const editIcon = document.querySelector(".fa-pen");
+  const statusIcon = document.querySelector(".stat");
 
-  trashIcon.addEventListener("click", removeBook);
+  statusIcon.addEventListener("click", (e) => changeReadStatus(e));
+  trashIcon.addEventListener("click", (e) => removeBook(e));
 }
 
 function removeBook(element) {
