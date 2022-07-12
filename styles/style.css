@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap");
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16;
+  color: white;
+}
+
+*::before,
+*,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100vh;
+  gap: 1rem;
+  background-color: #121212;
+}
+
+body header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 1rem 0.5rem;
+  width: 100%;
+  background-color: #333333;
+}
+
+body main.card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: Min(90vw);
+  padding: 1rem;
+  background-color: #333333;
+}
+
+body main.card-container:last-child {
+  border: none;
+}
+
+body main.card-container:empty {
+  background-color: #121212;
+}
+
+body main.card-container .card {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template: 1fr / 1fr 2fr;
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid white;
+}
+
+body main.card-container .card .hero {
+  grid-row: auto;
+}
+
+body main.card-container .card .information {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 0.5rem;
+  -ms-grid-column: 2;
+  grid-column: 2;
+}
+
+body main.card-container .card .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 1rem;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  justify-self: flex-end;
+}
+
+i {
+  cursor: pointer;
+}
+
+img {
+  height: 150px;
+  width: 100px;
+  padding-bottom: 0.4rem;
+}
+
+input {
+  background-color: #121212;
+  color: white;
+}
+
+.author {
+  font-size: 1.2rem;
+}
+
+.create {
+  position: fixed;
+  margin: 1rem;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: #333333;
+  color: inherit;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, 0.4);
+  z-index: -1;
+}
+
+.popup-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 1rem;
+  gap: 2rem;
+  border: 2px solid teal;
+  border-radius: 0.8rem;
+  background-color: #333333;
+  z-index: 1;
+}
+
+.popup-container label {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+
+.popup-container input {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.4rem;
+}
+
+.popup-container button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0 1rem;
+  border-radius: 0.8rem;
+  font-size: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.25rem;
+  margin-left: -0.1rem;
+}
+
+.stat {
+  margin-left: 0.3rem;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+#read {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#pages,
+#rating {
+  width: 5rem;
+}
+/*# sourceMappingURL=style.css.map */
