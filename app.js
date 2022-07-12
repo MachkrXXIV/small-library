@@ -132,6 +132,28 @@ function displayBooks() {
   }
 }
 
+function editBook(element) {
+  if (element.target.classList.contains("fa-pen")) {
+    toggleForm();
+    const index = element.target.closest(".card").getAttribute("data-index");
+
+    let formTitle = document.getElementById("title");
+    let formAuthor = document.getElementById("author");
+    let formPages = document.getElementById("pages");
+    let formRead = document.getElementById("read");
+
+    let title = myLibrary[index].title;
+    let author = myLibrary[index].author;
+    let pages = myLibrary[index].pages;
+    let read = myLibrary[index].read;
+    formTitle.value = title;
+    formAuthor.value = author;
+    formPages.value = pages;
+    formRead.checked = read;
+    existingBook = true;
+  }
+}
+
 function iconListeners() {
   const trashIcon = document.querySelector(".fa-trash-can");
   const editIcon = document.querySelector(".fa-pen");
@@ -139,6 +161,10 @@ function iconListeners() {
 
   statusIcon.addEventListener("click", (e) => changeReadStatus(e));
   trashIcon.addEventListener("click", (e) => removeBook(e));
+  editIcon.addEventListener("click", (e) => {
+    e.stopImmediatePropagation();
+    editBook(e);
+  });
 }
 
 function removeBook(element) {
