@@ -4,6 +4,8 @@ const form = document.querySelector("form");
 const formContainer = document.querySelector(".popup-container");
 const overlay = document.querySelector(".overlay");
 const submit = document.querySelector(".submit");
+let existingBook = false;
+let currentBookIndex = 0;
 
 create.addEventListener("click", toggleForm);
 form.addEventListener("submit", (e) => {
@@ -12,7 +14,16 @@ form.addEventListener("submit", (e) => {
   const formAuthor = document.getElementById("author").value;
   const formPages = document.getElementById("pages").value;
   const formRead = document.getElementById("read").checked;
-  addBookToLibrary(formTitle, formAuthor, formPages, formRead);
+
+  if (!existingBook) {
+    addBookToLibrary(formTitle, formAuthor, formPages, formRead);
+  } else {
+    myLibrary[currentBookIndex].title = formTitle;
+    myLibrary[currentBookIndex].author = formAuthor;
+    myLibrary[currentBookIndex].pages = formPages;
+    myLibrary[currentBookIndex].read = formRead;
+    displayBooks();
+  }
   toggleForm();
 });
 
@@ -136,6 +147,7 @@ function editBook(element) {
   if (element.target.classList.contains("fa-pen")) {
     toggleForm();
     const index = element.target.closest(".card").getAttribute("data-index");
+    currentBookIndex = index;
 
     let formTitle = document.getElementById("title");
     let formAuthor = document.getElementById("author");
@@ -180,7 +192,6 @@ function toggleForm() {
   overlay.classList.toggle("hidden");
   form.classList.toggle("hidden");
   formContainer.classList.toggle("hidden");
-  console.log(form);
 }
 
 displayBooks();
