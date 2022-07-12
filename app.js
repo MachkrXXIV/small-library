@@ -23,6 +23,7 @@ form.addEventListener("submit", (e) => {
     myLibrary[currentBookIndex].pages = formPages;
     myLibrary[currentBookIndex].read = formRead;
     displayBooks();
+    existingBook = false;
   }
   toggleForm();
 });
@@ -73,9 +74,8 @@ function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
     let bookElement = document.createElement("div");
-    let bookIndex = myLibrary.length - 1;
     bookElement.classList.add("card");
-    bookElement.setAttribute(["data-index"], bookIndex);
+    bookElement.setAttribute(["data-index"], i);
 
     const heroNode = document.createElement("div");
     const bookCover = document.createElement("img");
@@ -167,21 +167,31 @@ function editBook(element) {
 }
 
 function iconListeners() {
-  const trashIcon = document.querySelector(".fa-trash-can");
-  const editIcon = document.querySelector(".fa-pen");
-  const statusIcon = document.querySelector(".stat");
+  const trashIcons = document.querySelectorAll(".fa-trash-can");
+  const editIcons = document.querySelectorAll(".fa-pen");
+  const statusIcons = document.querySelectorAll(".stat");
 
-  statusIcon.addEventListener("click", (e) => changeReadStatus(e));
-  trashIcon.addEventListener("click", (e) => removeBook(e));
-  editIcon.addEventListener("click", (e) => {
-    e.stopImmediatePropagation();
-    editBook(e);
-  });
+  statusIcons.forEach((icon) =>
+    icon.addEventListener("click", (e) => changeReadStatus(e))
+  );
+  trashIcons.forEach((icon) =>
+    icon.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      removeBook(e);
+    })
+  );
+  editIcons.forEach((icon) =>
+    icon.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      editBook(e);
+    })
+  );
 }
 
 function removeBook(element) {
   if (element.target.className === "fa-solid fa-trash-can") {
     const index = element.target.closest(".card").getAttribute("data-index");
+    element;
     myLibrary.splice(index, 1);
   }
   displayBooks();
@@ -195,4 +205,3 @@ function toggleForm() {
 }
 
 displayBooks();
-iconListeners();
