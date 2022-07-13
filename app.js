@@ -29,14 +29,14 @@ form.addEventListener("submit", (e) => {
 });
 
 // do form queries to add to library
-let myLibrary = [
-  {
-    title: "When Panic Attacks",
-    author: "David D. Burns",
-    pages: 464,
-    read: true,
-  },
-];
+let myLibrary = [];
+
+if (localStorage.getItem("books") === null) {
+  myLibrary = [];
+} else {
+  const localBookStorage = JSON.parse(localStorage.getItem("books"));
+  myLibrary = localBookStorage;
+}
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -139,6 +139,7 @@ function displayBooks() {
     bookElement.appendChild(actionNode);
     appendToNode(heroNode, graphicNodes);
     appendToNode(informationNode, inputNodes);
+    localStorage.setItem("books", JSON.stringify(myLibrary));
     iconListeners();
   }
 }
