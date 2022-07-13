@@ -2,12 +2,18 @@ const bookShelf = document.querySelector("main");
 const create = document.querySelector(".create");
 const form = document.querySelector("form");
 const formContainer = document.querySelector(".popup-container");
+const formHeader = document.querySelector(".marker");
 const overlay = document.querySelector(".overlay");
 const submit = document.querySelector(".submit");
+const closeButton = document.querySelector(".fa-xmark");
+
 let existingBook = false;
 let currentBookIndex = 0;
 
-create.addEventListener("click", toggleForm);
+create.addEventListener("click", () => {
+  toggleForm();
+  formHeader.childNodes[0].textContent = "New Book";
+});
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formTitle = document.getElementById("title").value;
@@ -28,14 +34,18 @@ form.addEventListener("submit", (e) => {
   toggleForm();
 });
 
-// do form queries to add to library
+closeButton.addEventListener("click", toggleForm);
+
 let myLibrary = [];
 
-if (localStorage.getItem("books") === null) {
-  myLibrary = [];
-} else {
-  const localBookStorage = JSON.parse(localStorage.getItem("books"));
-  myLibrary = localBookStorage;
+// LOCAL STORAGE /////////////////
+function storageCheck() {
+  if (localStorage.getItem("books") === null) {
+    myLibrary = [];
+  } else {
+    const localBookStorage = JSON.parse(localStorage.getItem("books"));
+    myLibrary = localBookStorage;
+  }
 }
 
 function Book(title, author, pages, read) {
@@ -148,6 +158,7 @@ function editBook(element) {
   if (element.target.classList.contains("fa-pen")) {
     toggleForm();
     const index = element.target.closest(".card").getAttribute("data-index");
+    formHeader.textContent = "Edit Book";
     currentBookIndex = index;
 
     let formTitle = document.getElementById("title");
@@ -195,6 +206,7 @@ function removeBook(element) {
     element;
     myLibrary.splice(index, 1);
   }
+  if (myLibrary.length === 0) localStorage.clear();
   displayBooks();
 }
 
@@ -205,4 +217,5 @@ function toggleForm() {
   formContainer.classList.toggle("hidden");
 }
 
+storageCheck();
 displayBooks();
