@@ -67,6 +67,7 @@ body main.card-container {
   width: Min(90vw);
   padding: 1rem;
   background-color: #333333;
+  border-radius: 1rem;
 }
 
 body main.card-container:last-child {
@@ -86,7 +87,7 @@ body main.card-container .card {
   width: 100%;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #1793c4;
 }
 
 body main.card-container .card .hero {
@@ -157,10 +158,16 @@ input {
   bottom: 0;
   right: 0;
   padding: 1rem;
-  border-radius: 50%;
   background-color: #333333;
+  border-color: #1793c4;
+  border-radius: 50%;
   color: inherit;
   cursor: pointer;
+}
+
+.fa-solid,
+.fa-regular {
+  color: #1793c4;
 }
 
 .fa-xmark {
@@ -262,6 +269,7 @@ input {
 
 .title {
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 #read {
