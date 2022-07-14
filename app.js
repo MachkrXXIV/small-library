@@ -99,9 +99,17 @@ function displayBooks() {
     heroNode.classList.add("hero");
     bookCover.setAttribute("src", "images/fallback-bookcover.jpg");
     starsNode.classList.add("stars");
-    for (let i = 0; i < 5; i++) {
+    const totalStars = 5;
+    let filledStars = starCheck(book.rating);
+    for (let i = 0; i < totalStars; i++) {
       let star = document.createElement("i");
-      star.classList.add("fa-regular", "fa-star");
+      if (i < filledStars - 0.5) {
+        star.classList.add("fa-solid", "fa-star");
+      } else if (filledStars - i === 0.5) {
+        star.classList.add("fa-solid", "fa-star-half");
+      } else {
+        star.classList.add("fa-regular", "fa-star");
+      }
       starsNode.appendChild(star);
     }
     ratingNode.textContent = book.rating !== "" ? `(${book.rating}/10)` : "";
@@ -228,6 +236,30 @@ function removeBook(element) {
   }
   if (myLibrary.length === 0) localStorage.clear();
   displayBooks();
+}
+
+function starCheck(rating) {
+  if (rating == 10) {
+    return 5;
+  } else if (rating >= 9 && rating < 10) {
+    return 4.5;
+  } else if (rating >= 8 && rating < 9) {
+    return 4;
+  } else if (rating >= 7 && rating < 8) {
+    return 3.5;
+  } else if (rating >= 6 && rating < 7) {
+    return 3;
+  } else if (rating >= 5 && rating < 6) {
+    return 2.5;
+  } else if (rating >= 4 && rating < 5) {
+    return 2;
+  } else if (rating >= 3 && rating < 4) {
+    return 1.5;
+  } else if (rating >= 2 && rating < 3) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 function toggleForm() {
