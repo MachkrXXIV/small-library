@@ -195,7 +195,9 @@ function iconListeners() {
   const statusIcons = document.querySelectorAll(".stat");
 
   statusIcons.forEach((icon) =>
-    icon.addEventListener("click", (e) => changeReadStatus(e))
+    icon.addEventListener("click", (e) => {
+      changeReadStatus(e);
+    })
   );
   trashIcons.forEach((icon) =>
     icon.addEventListener("click", (e) => {
@@ -207,6 +209,13 @@ function iconListeners() {
     icon.addEventListener("click", (e) => {
       e.stopImmediatePropagation();
       editBook(e);
+      let formRatingContainer = document.querySelector(".rating-container");
+      let formRead = document.getElementById("read");
+      if (formRead.checked) {
+        formRatingContainer.className = "rating-container";
+      } else {
+        formRatingContainer.className = "rating-container hidden";
+      }
     })
   );
 }
@@ -230,7 +239,7 @@ function toggleForm() {
   const formRating = document.querySelector(".rating-container");
   const checkbox = document.getElementById("read");
   checkbox.addEventListener("click", () => {
-    if (this.checked && !formRating.contains("hidden")) {
+    if (this.checked) {
       formRating.classList.toggle("hidden");
     } else {
       formRating.classList.toggle("hidden");
