@@ -20,18 +20,22 @@ form.addEventListener("submit", (e) => {
   const formAuthor = document.getElementById("author").value;
   const formPages = document.getElementById("pages").value;
   const formRead = document.getElementById("read").checked;
+  const formRating = document.getElementById("rating").value;
+  const formRatingContainer = document.querySelector(".rating-container");
 
   if (!existingBook) {
-    addBookToLibrary(formTitle, formAuthor, formPages, formRead);
+    addBookToLibrary(formTitle, formAuthor, formPages, formRead, formRating);
   } else {
     myLibrary[currentBookIndex].title = formTitle;
     myLibrary[currentBookIndex].author = formAuthor;
     myLibrary[currentBookIndex].pages = formPages;
     myLibrary[currentBookIndex].read = formRead;
+    myLibrary[currentBookIndex].rating = formRating;
     displayBooks();
     existingBook = false;
   }
   toggleForm();
+  formRatingContainer.classList.toggle("hidden");
 });
 
 closeButton.addEventListener("click", toggleForm);
@@ -48,15 +52,16 @@ function storageCheck() {
   }
 }
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, rating = undefined) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.rating = rating;
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
+function addBookToLibrary(title, author, pages, read, rating) {
+  const book = new Book(title, author, pages, read, rating);
   myLibrary.push(book);
   displayBooks();
 }
@@ -90,6 +95,7 @@ function displayBooks() {
     const heroNode = document.createElement("div");
     const bookCover = document.createElement("img");
     const starsNode = document.createElement("div");
+    const ratingNode = document.createElement("p");
     heroNode.classList.add("hero");
     bookCover.setAttribute("src", "images/fallback-bookcover.jpg");
     starsNode.classList.add("stars");
@@ -98,6 +104,7 @@ function displayBooks() {
       star.classList.add("fa-regular", "fa-star");
       starsNode.appendChild(star);
     }
+    ratingNode.textContent = book.rating !== "" ? `(${book.rating}/10)` : "";
 
     const titleNode = document.createElement("h2");
     titleNode.classList.add("title");
@@ -140,7 +147,7 @@ function displayBooks() {
       }
     });
 
-    const graphicNodes = [bookCover, starsNode];
+    const graphicNodes = [bookCover, starsNode, ratingNode];
     const inputNodes = [titleNode, authorNode, pagesNode, readNode];
 
     //add to DOM
@@ -166,15 +173,18 @@ function editBook(element) {
     let formAuthor = document.getElementById("author");
     let formPages = document.getElementById("pages");
     let formRead = document.getElementById("read");
+    let formRating = document.getElementById("rating");
 
     let title = myLibrary[index].title;
     let author = myLibrary[index].author;
     let pages = myLibrary[index].pages;
     let read = myLibrary[index].read;
+    let rating = myLibrary[index].rating;
     formTitle.value = title;
     formAuthor.value = author;
     formPages.value = pages;
     formRead.checked = read;
+    formRating.value = rating;
     existingBook = true;
   }
 }
@@ -220,9 +230,8 @@ function toggleForm() {
   const formRating = document.querySelector(".rating-container");
   const checkbox = document.getElementById("read");
   checkbox.addEventListener("click", () => {
-    if (this.checked) {
+    if (this.checked && !formRating.contains("hidden")) {
       formRating.classList.toggle("hidden");
-      console.log(formRating.classList);
     } else {
       formRating.classList.toggle("hidden");
     }
