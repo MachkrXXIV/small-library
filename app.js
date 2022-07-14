@@ -109,7 +109,7 @@ function displayBooks() {
 
     const pagesNode = document.createElement("h3");
     pagesNode.classList.add("pages");
-    pagesNode.textContent = book.pages;
+    pagesNode.textContent = `${book.pages} pages`;
 
     const readNode = document.createElement("h3");
     const changeStatIcon = document.createElement("i");
