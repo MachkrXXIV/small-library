@@ -79,9 +79,16 @@
           <label for="read">Finished?:</label>
           <input type="checkbox" name="read" id="read" autocomplete="off" />
         </div>
-        <div class="rating-container">
-          <label for="rating">Rating:</label>
-          <input type="number" name="rating" id="rating" autocomplete="off" />
+        <div class="rating-container hidden">
+          <label for="rating">Rating (1-10):</label>
+          <input
+            type="number"
+            name="rating"
+            id="rating"
+            min="1"
+            max="10"
+            autocomplete="off"
+          />
         </div>
         <button type="submit" class="submit">Submit</button>
       </div>

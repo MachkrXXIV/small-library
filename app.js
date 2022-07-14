@@ -143,6 +143,7 @@ function displayBooks() {
     const graphicNodes = [bookCover, starsNode];
     const inputNodes = [titleNode, authorNode, pagesNode, readNode];
 
+    //add to DOM
     bookShelf.appendChild(bookElement);
     bookElement.appendChild(heroNode);
     bookElement.appendChild(informationNode);
@@ -215,6 +216,17 @@ function toggleForm() {
   overlay.classList.toggle("hidden");
   form.classList.toggle("hidden");
   formContainer.classList.toggle("hidden");
+
+  const formRating = document.querySelector(".rating-container");
+  const checkbox = document.getElementById("read");
+  checkbox.addEventListener("click", () => {
+    if (this.checked) {
+      formRating.classList.toggle("hidden");
+      console.log(formRating.classList);
+    } else {
+      formRating.classList.toggle("hidden");
+    }
+  });
 }
 
 storageCheck();
