@@ -1,4 +1,6 @@
 # small-library
 
-do local storage
 do rating
+do chapter for manga
+do more styling
+do stats

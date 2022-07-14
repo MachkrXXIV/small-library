@@ -37,7 +37,7 @@ $overlay-color: hsla(0, 0%, 20%, 0.4);
 
 body {
   @include init-flex(column, flex-start, center);
-  min-height: 100vh;
+  height: 100%;
   gap: 1rem;
   background-color: $bg-darker;
 
@@ -50,10 +50,12 @@ body {
 
   main.card-container {
     @include init-flex(column, flex-start, flex-start);
+    max-height: 80vh;
     width: Min(90vw);
     padding: 1rem;
     background-color: $bg-dark;
     border-radius: 1rem;
+    overflow-y: scroll;
 
     &:last-child {
       border: none;
@@ -123,6 +125,14 @@ input {
   border-radius: 50%;
   color: inherit;
   cursor: pointer;
+}
+
+.disable-scrollbars {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 }
 
 .fa-solid,
