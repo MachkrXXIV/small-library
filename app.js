@@ -30,7 +30,10 @@ form.addEventListener("submit", (e) => {
     myLibrary[currentBookIndex].author = formAuthor;
     myLibrary[currentBookIndex].pages = formPages;
     myLibrary[currentBookIndex].read = formRead;
-    myLibrary[currentBookIndex].rating = formRating;
+    myLibrary[currentBookIndex].rating = myLibrary[currentBookIndex].read
+      ? formRating
+      : "";
+
     displayBooks();
     existingBook = false;
   }
@@ -239,27 +242,8 @@ function removeBook(element) {
 }
 
 function starCheck(rating) {
-  if (rating == 10) {
-    return 5;
-  } else if (rating >= 9 && rating < 10) {
-    return 4.5;
-  } else if (rating >= 8 && rating < 9) {
-    return 4;
-  } else if (rating >= 7 && rating < 8) {
-    return 3.5;
-  } else if (rating >= 6 && rating < 7) {
-    return 3;
-  } else if (rating >= 5 && rating < 6) {
-    return 2.5;
-  } else if (rating >= 4 && rating < 5) {
-    return 2;
-  } else if (rating >= 3 && rating < 4) {
-    return 1.5;
-  } else if (rating >= 2 && rating < 3) {
-    return 1;
-  } else {
-    return 0;
-  }
+  // rounds to nearest 0.5 and in (0-5)
+  return Math.round(rating * 2) / 4;
 }
 
 function toggleForm() {
