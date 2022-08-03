@@ -55,12 +55,14 @@ function storageCheck() {
   }
 }
 
-function Book(title, author, pages, read, rating = undefined) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.rating = rating;
+class Book {
+  constructor(title, author, pages, read, rating = undefined) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.rating = rating;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read, rating) {
